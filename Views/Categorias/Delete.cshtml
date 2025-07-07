@@ -1,0 +1,38 @@
+@model Categoria
+
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        <h4>Confirmar Exclusão</h4>
+    </div>
+    <div class="card-body">
+        <h5 class="text-danger">Tem certeza que deseja excluir esta categoria?</h5>
+        <hr />
+        
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i> @ViewBag.ErrorMessage
+            </div>
+        }
+
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Nome)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Nome)</dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mt-4">
+                @if (ViewBag.ErrorMessage == null)
+                {
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Confirmar Exclusão
+                    </button>
+                }
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

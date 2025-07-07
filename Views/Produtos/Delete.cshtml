@@ -1,0 +1,35 @@
+@model ProjetoFinal.Models.Produto
+
+@{
+    ViewData["Title"] = "Excluir Produto";
+}
+
+<div class="alert alert-danger">
+    <h3>Tem certeza que deseja excluir este produto?</h3>
+    <p>Esta ação não poderá ser desfeita.</p>
+</div>
+
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h4>@Model.Nome</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">Preço:</dt>
+            <dd class="col-sm-8">@Model.Preco.ToString("C")</dd>
+
+            <dt class="col-sm-4">Estoque:</dt>
+            <dd class="col-sm-8">@Model.Estoque unidades</dd>
+
+            <dt class="col-sm-4">Categoria:</dt>
+            <dd class="col-sm-8">@Model.Categoria?.Nome</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

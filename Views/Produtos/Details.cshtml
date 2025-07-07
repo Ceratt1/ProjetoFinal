@@ -1,0 +1,30 @@
+@model ProjetoFinal.Models.Produto
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4>@Model.Nome</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">ID:</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Preço:</dt>
+            <dd class="col-sm-9">@Model.Preco.ToString("C")</dd>
+
+            <dt class="col-sm-3">Estoque:</dt>
+            <dd class="col-sm-9">@Model.Estoque unidades</dd>
+
+            <dt class="col-sm-3">Categoria:</dt>
+            <dd class="col-sm-9">@Model.Categoria?.Nome</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Relatórios";
+}
+
+<div class="container mt-4">
+    <h2>Relatório Consolidado</h2>
+    
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h4>Estatísticas Gerais</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5>Total de Produtos</h5>
+                            <div class="display-4">@Model.TotalProdutos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+            <h4>Produtos por Categoria</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th class="text-right">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProdutosPorCategoria)
+                    {
+                        <tr>
+                            <td>@item.Categoria</td>
+                            <td class="text-right">@item.Quantidade</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

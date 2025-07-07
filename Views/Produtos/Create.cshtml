@@ -1,0 +1,17 @@
+@model ProjetoFinal.Models.Produto
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="@ViewContext.RouteData.Values["action"]">
+    @if (ViewContext.RouteData.Values["action"].ToString() == "Edit")
+    {
+        <input type="hidden" asp-for="Id" />
+    }
+    
+    @await Html.PartialAsync("_FormFields", Model)
+    
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
