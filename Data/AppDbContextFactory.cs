@@ -8,8 +8,8 @@ namespace ProjetoFinal.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql("Server=localhost;Database=projetofinal;Uid=root;Pwd=root;", 
-                ServerVersion.AutoDetect("Server=localhost;Database=projetofinal;Uid=root;Pwd=root;"));
+            optionsBuilder.UseMySql("Server=localhost;Database=projetofinal;Uid=root;Pwd=;", 
+                ServerVersion.AutoDetect("Server=localhost;Database=projetofinal;Uid=root;Pwd=;"));
 
             return new AppDbContext(optionsBuilder.Options);
         }

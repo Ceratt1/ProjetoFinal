@@ -28,6 +28,7 @@ namespace ProjetoFinal.Controllers
             if (id == null) return NotFound();
 
             var categoria = await _context.Categorias
+                .Include(c => c.Produtos)  // Inclui os produtos relacionados
                 .FirstOrDefaultAsync(m => m.Id == id);
                 
             if (categoria == null) return NotFound();
@@ -48,7 +49,6 @@ namespace ProjetoFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Validação adicional para nome único
                 if (_context.Categorias.Any(c => c.Nome == categoria.Nome))
                 {
                     ModelState.AddModelError("Nome", "Esta categoria já existe");
@@ -109,7 +109,6 @@ namespace ProjetoFinal.Controllers
                 
             if (categoria == null) return NotFound();
 
-            // Verifica se há produtos vinculados
             if (_context.Produtos.Any(p => p.CategoriaId == id))
             {
                 ViewBag.ErrorMessage = "Não é possível excluir: existem produtos vinculados a esta categoria";

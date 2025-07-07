@@ -20,6 +20,7 @@ namespace ProjetoFinal.Services
         {
             return await _context.Produtos
                 .Include(p => p.Categoria)
+                .Include(p => p.Fornecedor) // Inclui fornecedor
                 .ToListAsync();
         }
 
@@ -27,7 +28,8 @@ namespace ProjetoFinal.Services
         {
             return await _context.Produtos
                 .Include(p => p.Categoria)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(p => p.Fornecedor) // Inclui fornecedor
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task CreateAsync(Produto produto)
@@ -45,21 +47,29 @@ namespace ProjetoFinal.Services
         public async Task DeleteAsync(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            _context.Produtos.Remove(produto);
-            await _context.SaveChangesAsync();
+            if (produto != null)
+            {
+                _context.Produtos.Remove(produto);
+                await _context.SaveChangesAsync();
+            }
         }
-        
+
         public async Task<List<Produto>> GetAllWithCategoriesAsync()
         {
+            // Inclui também fornecedor
             return await _context.Produtos
                 .Include(p => p.Categoria)
+                .Include(p => p.Fornecedor)
                 .ToListAsync();
         }
 
-        public Task<Produto> GetByIdWithCategoriaAsync(int id)
+        public async Task<Produto> GetByIdWithCategoriaAsync(int id)
         {
-            throw new NotImplementedException();
+            // Implementação corrigida
+            return await _context.Produtos
+                .Include(p => p.Categoria)
+                .Include(p => p.Fornecedor)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
-
 }

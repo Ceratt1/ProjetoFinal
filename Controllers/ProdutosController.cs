@@ -3,6 +3,7 @@ using ProjetoFinal.Data;
 using ProjetoFinal.Models;
 using ProjetoFinal.Services.Interfaces;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ProjetoFinal.Controllers
 {
@@ -38,6 +39,7 @@ namespace ProjetoFinal.Controllers
         public IActionResult Create()
         {
             ViewBag.Categorias = _context.Categorias.ToList();
+            ViewBag.Fornecedores = _context.Fornecedores.ToList(); // novo
             return View();
         }
 
@@ -51,7 +53,9 @@ namespace ProjetoFinal.Controllers
                 await _service.CreateAsync(produto);
                 return RedirectToAction(nameof(Index));
             }
+
             ViewBag.Categorias = _context.Categorias.ToList();
+            ViewBag.Fornecedores = _context.Fornecedores.ToList(); // novo
             return View(produto);
         }
 
@@ -64,6 +68,7 @@ namespace ProjetoFinal.Controllers
             if (produto == null) return NotFound();
 
             ViewBag.Categorias = _context.Categorias.ToList();
+            ViewBag.Fornecedores = _context.Fornecedores.ToList(); // novo
             return View(produto);
         }
 
@@ -79,7 +84,9 @@ namespace ProjetoFinal.Controllers
                 await _service.UpdateAsync(produto);
                 return RedirectToAction(nameof(Index));
             }
+
             ViewBag.Categorias = _context.Categorias.ToList();
+            ViewBag.Fornecedores = _context.Fornecedores.ToList(); // novo
             return View(produto);
         }
 

@@ -1,0 +1,35 @@
+@model ProjetoFinal.Models.Categoria
+
+<h2>Categoria: @Model.Nome</h2>
+
+@if (Model.Produtos != null && Model.Produtos.Any())
+{
+    <h3>Produtos relacionados</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model.Produtos)
+            {
+                <tr>
+                    <td>@produto.Nome</td>
+                    <td>@produto.Preco.ToString("C")</td>
+                    <td>@produto.Estoque</td>
+                    <td>
+                        <a asp-controller="Produtos" asp-action="Details" asp-route-id="@produto.Id" class="btn btn-sm btn-info">Detalhes</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há produtos relacionados a esta categoria.</p>
+}

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoFinal.Models
 {
@@ -15,7 +16,16 @@ namespace ProjetoFinal.Models
         public decimal Preco { get; set; }
 
         public int Estoque { get; set; }
+
+        [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }
-        public Categoria? Categoria { get; set; } // Relacionamento
+        public Categoria? Categoria { get; set; }
+
+        // >>> Novo relacionamento com Fornecedor
+
+        [Display(Name = "Fornecedor")]
+        public int FornecedorId { get; set; }  // Chave estrangeira
+
+        public Fornecedor? Fornecedor { get; set; }  // Propriedade de navegação
     }
 }

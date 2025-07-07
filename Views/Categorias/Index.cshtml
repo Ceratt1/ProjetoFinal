@@ -16,11 +16,11 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                     <td class="text-right">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">
                             <i class="fas fa-info-circle"></i> Detalhes
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
+                            <i class="fas fa-edit"></i> Editar
                         </a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
                             <i class="fas fa-trash-alt"></i> Excluir
